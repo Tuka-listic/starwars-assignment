@@ -1,5 +1,7 @@
-import React, {useState, useEffect} from 'react'
-import axios from 'axios'
+import React, {useState, useEffect} from 'react';
+import axios from 'axios';
+import '../App.css';
+import { Link } from 'react-router-dom';
 
 const Card = () => {
     const [loading, setLoading] = useState(true);
@@ -33,7 +35,7 @@ const Card = () => {
             return text;
         }
 
-            
+           
     }
 
    
@@ -44,12 +46,12 @@ const Card = () => {
             </header>
             <div class='container'>
                 <div className='list'>
-                    {data.map(list => (
-                        <div className='data-list' key={list.id}>
+                    {data.map((list, index) => (
+                        <div className='data-list' key={list.episode_id}>
                             <h3>{list.title}</h3>
                             <p className='date'>{new Date(list.release_date).toLocaleDateString('en-us',{month: 'long', day: 'numeric', year: 'numeric'})}</p>
                             <p className='crawl' >{reduceLength(list.opening_crawl, 260)}</p>
-                            <a href='#'>More info</a>
+                            <Link to={'/' + (index + 1)} > More info </Link>
                         </div>
                     ))}
                 </div>
